@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func draw_board(board [9][9]int) {
+func drawBoard(board [9][9]int) {
 	for i, row := range board{
 		if i%3 == 0 && i != 0{
 			fmt.Print("--- --- ---")
@@ -17,9 +17,7 @@ func draw_board(board [9][9]int) {
 		fmt.Println()
 	}
 }
-// Position will be (Row, Column)
-
-func valid(num int, pos [2]int, board [9][9]int) bool {
+func valid(num int, pos [2]int, board [9][9]int) bool { // Position will be (Row, Column)
 	// Check row
 	for i:=0; i<9; i++ { 
 		if num == board[i][pos[0]] && i != pos[0] {
@@ -33,8 +31,13 @@ func valid(num int, pos [2]int, board [9][9]int) bool {
 		}
 	}
 	// Check small square
-
-
+	for i:=pos[0]; i<pos[0] + 3; i++ {
+		for j:=pos[1]; j<pos[1] + 3; j++ {
+			if board[i][j] == num {
+				return false
+			}
+		}
+	}
 	return true
 }
 
@@ -50,5 +53,7 @@ func main(){
 		[9]int{0,0,0,0,0,0,4,5,6},
 		[9]int{0,0,0,0,0,0,7,8,9},
 	}
-	draw_board(st)
+	drawBoard(st)
+
+	fmt.Println(valid(5, [2]int{0, 3}, st))
 }
