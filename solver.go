@@ -40,6 +40,16 @@ func valid(num int, pos [2]int, board [9][9]int) bool { // Position will be (Row
 	}
 	return true
 }
+func findEmpty(board [9][9]int) [2]int{
+	for i:=0; i<9; i++ {
+		for j := 0; j<9; j++ {
+			if board[i][j] == 0 {
+				return [2]int{i, j}
+			}
+		}
+	}
+	return [2]int{10,10}
+}
 
 func main(){
 	st := [9][9]int{
@@ -53,7 +63,8 @@ func main(){
 		[9]int{0,0,0,0,0,0,4,5,6},
 		[9]int{0,0,0,0,0,0,7,8,9},
 	}
-	drawBoard(st)
+	// drawBoard(st)
 
 	fmt.Println(valid(5, [2]int{0, 3}, st))
+	fmt.Println(findEmpty(st))
 }
